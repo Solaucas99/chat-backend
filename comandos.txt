@@ -1,0 +1,11 @@
+docker copy:
+docker cp cassandraDB:/etc/cassandra/cassandra.yaml .
+docker cp cassandra.yaml cassandraDB:/etc/cassandra/cassandra.yaml
+
+cassandra open on terminal:
+cqlsh -u cassandra -p cassandra
+
+cassandra open on terminal vscode:
+docker exec -it cassandraDB bash -c "cqlsh -u cassandra -p cassandra"
+
+docker ps

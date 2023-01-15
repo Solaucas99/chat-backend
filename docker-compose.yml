@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+
+  chat-db:
+    image: cassandra
+    restart: always
+    container_name: cassandraDB
+    ports:
+      - 9042:9042
+    networks:
+      - my-network
+    volumes:
+      - ./build/cassandra:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+networks:
+    my-network:
+        driver: bridge
